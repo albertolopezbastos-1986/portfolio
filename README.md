@@ -62,3 +62,25 @@ Editar los archivos de `dist/`, hacer commit y push a `main`. GitHub Actions pub
 - **Deployment pendiente de aprobación:** revisar el environment **github-pages** y aprobar el despliegue desde la ejecución de Actions si tiene revisores configurados.
 
 Documentación oficial: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+
+## Publicar desde la terminal o desde este chat
+
+Después de editar el sitio, ejecutar desde la carpeta del proyecto:
+
+```sh
+npm run deploy -- -m "Describe el cambio"
+```
+
+El comando valida JavaScript, exige estar en `main`, prepara los archivos del sitio, crea un commit cuando hay cambios y hace push a `origin/main`. Si falla el push, el commit queda local y podés reintentar el mismo comando. No hace force push ni mezcla ramas automáticamente. Usa el alias y la clave SSH configurados en el repositorio.
+
+Los archivos que publica son `dist/`, `scripts/`, `.github/`, `package.json`, `package-lock.json`, `README.md` y `.gitignore` cuando existen. No agrega archivos externos a esa lista. Si ya hay archivos de otras rutas preparados en Git, pide revisarlos antes de continuar.
+
+Para comprobar sin crear commits ni subir nada:
+
+```sh
+npm run deploy:check
+```
+
+También podés pedir en este chat: **“Aplicá estos cambios y publicalos en GitHub Pages”**. El flujo es el mismo: validar, commit y push. El push inicia el workflow de GitHub Actions; la publicación queda confirmada cuando el job de Pages termina en verde. Estado: https://github.com/albertolopezbastos-1986/portfolio/actions
+
+La primera configuración de **Settings → Pages → Source → GitHub Actions** sigue siendo necesaria una sola vez.
