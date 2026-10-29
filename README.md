@@ -34,3 +34,31 @@ La lista contiene las 35 URLs únicas provistas por Alberto. Las tarjetas enlaza
 Las imágenes pertenecen a sus respectivas marcas. La tipografía DM Sans y Manrope se carga desde Google Fonts, con alternativas sans-serif locales.
 
 La publicación inicial de Sites es privada. La configuración está en `.openai/hosting.json`.
+
+## Publicar en GitHub Pages
+
+El workflow `.github/workflows/deploy-pages.yml` valida JavaScript y publica únicamente `dist/`. Se ejecuta con cada push a `main` y también de forma manual. No requiere instalar dependencias, configurar secretos ni ejecutar el servidor local en GitHub.
+
+### Configuración inicial en GitHub
+
+1. Abrir el repositorio que contiene este código en GitHub. Si usás GitHub Free, el repositorio debe ser público para usar Pages.
+2. Entrar en **Settings → Pages**.
+3. En **Build and deployment → Source**, seleccionar **GitHub Actions**. No elegir una rama ni la carpeta `/docs`.
+4. Entrar en **Actions → Deploy portfolio to GitHub Pages**. Si GitHub pide habilitar Actions para el repositorio, habilitarlo.
+5. Seleccionar **Run workflow**, elegir **main** y confirmar **Run workflow**. El archivo del workflow debe estar subido a esa rama para que aparezca.
+6. Esperar a que el job `deploy` termine en verde. Abrir el enlace del environment **github-pages** o volver a **Settings → Pages → Visit site**.
+
+La dirección habitual es `https://USUARIO.github.io/portfolio/`. Usar el enlace devuelto por GitHub como dirección definitiva. Los assets usan rutas relativas para funcionar dentro de `/portfolio/` y también en un dominio propio.
+
+### Actualizaciones
+
+Editar los archivos de `dist/`, hacer commit y push a `main`. GitHub Actions publica la nueva versión automáticamente.
+
+### Si falla
+
+- **No aparece el workflow:** comprobar que `.github/workflows/deploy-pages.yml` está en `main` en GitHub.
+- **Pages no configurado o error 404 en Configure GitHub Pages:** seleccionar **GitHub Actions** en **Settings → Pages** y volver a ejecutar el workflow.
+- **Actions deshabilitado o bloqueado:** revisar **Settings → Actions → General** y permitir las acciones oficiales usadas por el workflow, si las políticas de la cuenta lo permiten.
+- **Deployment pendiente de aprobación:** revisar el environment **github-pages** y aprobar el despliegue desde la ejecución de Actions si tiene revisores configurados.
+
+Documentación oficial: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
