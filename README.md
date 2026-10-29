@@ -4,7 +4,23 @@ Portfolio estático en español e inglés, con modo claro y oscuro. Sin dependen
 
 ## Desarrollo local
 
-Ejecutar `npm run dev` y abrir http://localhost:5173.
+Requiere Node.js 18 o superior. No hace falta instalar dependencias.
+
+```sh
+cd shopify-portfolio
+npm run dev
+```
+
+Abrir http://localhost:5173. Si clonaste el repo directamente, ejecutá el comando desde la carpeta que contiene `package.json`.
+
+- `npm run dev`: servidor local; recargá el navegador para ver cambios.
+- `npm start`: iniciar el servidor local.
+- `npm run preview`: previsualizar el sitio estático.
+- `npm run check`: comprobar la sintaxis de JavaScript.
+
+Podés cambiar el puerto con `PORT=3000 npm run dev` (Linux/macOS/WSL) o `$env:PORT=3000; npm run dev` (PowerShell). Para acceder desde otros dispositivos en tu red, usá `HOST=0.0.0.0 npm run dev` y abrí la IP de tu equipo con el puerto elegido.
+
+Detener el servidor con `Ctrl+C`.
 
 ## Contenido
 

@@ -4,7 +4,12 @@
   "private": true,
   "description": "Bilingual Shopify frontend portfolio for Alberto Lopez Bastos",
   "scripts": {
-    "dev": "python3 -m http.server 5173 --directory dist",
-    "check": "node --check dist/app.js"
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs",
+    "check": "node --check dist/app.js && node --check scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
